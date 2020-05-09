@@ -1,0 +1,11 @@
+info\revenberg\uploader\step\Processor.class
+info\revenberg\uploader\dao\jpa\BatchRepository.class
+info\revenberg\uploader\objects\DataObject.class
+info\revenberg\uploader\step\Writer.class
+info\revenberg\uploader\listener\JobCompletionListener.class
+info\revenberg\uploader\step\Writer$1.class
+info\revenberg\uploader\service\BatchService.class
+info\revenberg\uploader\step\Reader.class
+info\revenberg\uploader\config\BatchConfig.class
+info\revenberg\uploader\SpringBatchLoaderApplication.class
+info\revenberg\uploader\controller\JobInvokerController.class
