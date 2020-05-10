@@ -6,7 +6,7 @@ import  info.revenberg.uploader.dao.jpa.BatchRepository;
 
 @Service
 public class BatchService {
-    @Autowired
+    // @Autowired
     private BatchRepository batchRepository;
     
     public BatchService() {    
