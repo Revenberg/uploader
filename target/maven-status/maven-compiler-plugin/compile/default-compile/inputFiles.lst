@@ -6,5 +6,6 @@ D:\git\uploader\src\main\java\info\revenberg\uploader\SpringBatchLoaderApplicati
 D:\git\uploader\src\main\java\info\revenberg\uploader\step\Processor.java
 D:\git\uploader\src\main\java\info\revenberg\uploader\objects\DataObject.java
 D:\git\uploader\src\main\java\info\revenberg\uploader\config\BatchConfig.java
+D:\git\uploader\src\main\java\info\revenberg\uploader\objects\MyStepExecution.java
 D:\git\uploader\src\main\java\info\revenberg\uploader\service\BatchService.java
 D:\git\uploader\src\main\java\info\revenberg\uploader\step\Writer.java

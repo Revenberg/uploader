@@ -31,28 +31,19 @@ public class BatchConfig {
 
 	@Bean
 	public Job processJob() {
-		return jobBuilderFactory.get("processJob")
-				.incrementer(new RunIdIncrementer())
-				.listener(listener())
-				.flow(step1())
-				.end()
-				.build();
+		return jobBuilderFactory.get("processJob").incrementer(new RunIdIncrementer()).listener(listener())
+				.flow(step1()).end().build();
 	}
 
 	@Bean
-	public TaskExecutor taskExecutor(){
+	public TaskExecutor taskExecutor() {
 		return new SimpleAsyncTaskExecutor("spring_batch");
 	}
 
 	@Bean
 	public Step step1() {
-		return stepBuilderFactory.get("step1")
-		        .<DataObject, DataObject> chunk(50)
-				.reader(new Reader())
-				.processor(new Processor())
-				.writer(new Writer())
-				.taskExecutor(taskExecutor())
-				.build();
+		return stepBuilderFactory.get("step1").<DataObject, DataObject>chunk(50).reader(new Reader())
+				.processor(new Processor()).writer(new Writer()).taskExecutor(taskExecutor()).build();
 	}
 
 	@Bean

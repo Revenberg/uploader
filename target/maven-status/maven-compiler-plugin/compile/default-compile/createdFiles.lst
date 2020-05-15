@@ -8,4 +8,5 @@ info\revenberg\uploader\service\BatchService.class
 info\revenberg\uploader\step\Reader.class
 info\revenberg\uploader\config\BatchConfig.class
 info\revenberg\uploader\SpringBatchLoaderApplication.class
+info\revenberg\uploader\objects\MyStepExecution.class
 info\revenberg\uploader\controller\JobInvokerController.class

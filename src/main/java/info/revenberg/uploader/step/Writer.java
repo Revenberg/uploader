@@ -78,8 +78,6 @@ public class Writer implements ItemWriter<DataObject> {
             result.append(line);
         }
 
-        // System.out.println("Response : \n" + result);
-
         // Throw runtime exception if status code isn't 200
         if ((response.getStatusLine().getStatusCode() < 200) || (response.getStatusLine().getStatusCode() > 299)) {
             throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
@@ -96,22 +94,22 @@ public class Writer implements ItemWriter<DataObject> {
             if (msg != null) {
                 if (msg.getFilename() != "") {
                     counter++;
-                    System.out.println(Integer.toString(counter) + " " 
-                            + Integer.toString(count) + " Writing the data " + " - " + msg.getBundleName() + " - "
-                            + msg.getSongName());
+                    System.out.println(Integer.toString(counter) + " " + Integer.toString(count) + " Writing the data "
+                            + " - " + msg.getBundleName() + " - " + msg.getSongName());
                     retry = 15;
                     while (retry > 0) {
                         try {
                             rc = uploadFile("http://40.122.30.210:8090/rest/v1/ppt/" + msg.getBundleName() + "/"
                                     + msg.getSongName(), msg.getFilename());
-                            System.out.println("oke");
-                            System.out.println(rc);
                             retry = 0;
                         } catch (Exception e) {
                             retry--;
                             System.out.println(e);
                             TimeUnit.SECONDS.sleep(30);
                         }
+                    }
+                    if (count == 1) {
+                        TimeUnit.SECONDS.sleep(5);
                     }
                 }
                 count++;

@@ -10,25 +10,17 @@ import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import info.revenberg.uploader.service.BatchService;
+//import org.springframework.beans.factory.annotation.Autowired;
 
 public class Reader implements ItemReader<DataObject> {
-    @Autowired
-    private BatchService batchService;
 
-	private File folder = null;
-	List<String> list = new ArrayList<>();
+    private File folder = null;
+    List<String> list = new ArrayList<>();
 
-	public static String location = "D:/pptx/";
+    public static String location = "D:/pptx/";
 
     public static void search(final String pattern, final File folder, List<String> result, final String pre) {
-        Reader reader = new Reader();
-        Long count = reader.batchService.getLastReadCount();
-        System.out.println(count);
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!");
-        
+
         for (final File f : folder.listFiles()) {
 
             if (f.isDirectory()) {
@@ -40,27 +32,26 @@ public class Reader implements ItemReader<DataObject> {
                     if (pre == "") {
                         result.add(location + f.getName());
                     } else {
-                        result.add(location +  pre + f.getName());
+                        result.add(location + pre + f.getName());
                     }
                 }
             }
         }
     }
 
-	@Override
-	public DataObject read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
-		if (folder == null) {
-			folder = new File(location);
-			search(".*", folder, list, "");
-	   }
+    @Override
+    public DataObject read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
+        if (folder == null) {
+            folder = new File(location);
+            search(".*pptx", folder, list, "");
+        }
 
-	   if (!list.isEmpty()) {
-		   String element = list.get(0);
-           list.remove(0);
-		   return new DataObject(element);
-	   }
-	   return null;
-   }
-
+        if (!list.isEmpty()) {
+            String element = list.get(0);
+            list.remove(0);
+            return new DataObject(element);
+        }
+        return null;
+    }
 
 }

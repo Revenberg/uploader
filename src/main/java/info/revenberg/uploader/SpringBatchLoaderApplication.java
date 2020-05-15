@@ -20,30 +20,42 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableBatchProcessing
 
 @SpringBootApplication(scanBasePackages = { "info.revenberg.uploader" })
-@ComponentScan(basePackages = { "info.revenberg" } )
-//@ConfigurationPropertiesScan("info.revenberg.uploader.properties")
-@EnableJpaRepositories( { "info.revenberg.uploader.objects" } ) 
+@ComponentScan(basePackages = { "info.revenberg.uploader" })
+// @ConfigurationPropertiesScan("info.revenberg.uploader.properties")
+// @EnableJpaRepositories({ "info.revenberg.uploader.dao.jpa",
+// "info.revenberg.uploader.objects" })
 @EntityScan(basePackages = { "info.revenberg.uploader.objects" })
 
+/*
+ * @SpringBootApplication(scanBasePackages = { "info.revenberg.song" })
+ * //@EnableAutoConfiguration // Sprint Boot Auto Configuration
+ * 
+ * @ComponentScan(basePackages = { "info.revenberg" } )
+ * 
+ * @ConfigurationPropertiesScan("info.revenberg.song.properties")
+ * 
+ * @EnableJpaRepositories( { "info.revenberg.dao.jpa", "info.revenberg.service"
+ * } ) // To segregate Sqlite and JPA repositories.
+ * 
+ * @EntityScan(basePackages = { "info.revenberg.domain" })
+ */
 
 public class SpringBatchLoaderApplication {
 
-//	private static ConfigurableApplicationContext context;	
-	public static void main(String[] args) {
-        //context = 
-         SpringApplication.run(SpringBatchLoaderApplication.class, args);
-	}
-
-/*	public static void restart() {
-        ApplicationArguments args = context.getBean(ApplicationArguments.class);
- 
-        Thread thread = new Thread(() -> {
-            context.close();
-            context = SpringApplication.run(SpringBatchLoaderApplication.class, args.getSourceArgs());
-        });
- 
-        thread.setDaemon(false);
-        thread.start();
+    // private static ConfigurableApplicationContext context;
+    public static void main(String[] args) {
+        // context =
+        SpringApplication.run(SpringBatchLoaderApplication.class, args);
     }
- */
+
+    /*
+     * public static void restart() { ApplicationArguments args =
+     * context.getBean(ApplicationArguments.class);
+     * 
+     * Thread thread = new Thread(() -> { context.close(); context =
+     * SpringApplication.run(SpringBatchLoaderApplication.class,
+     * args.getSourceArgs()); });
+     * 
+     * thread.setDaemon(false); thread.start(); }
+     */
 }
