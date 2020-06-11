@@ -6,7 +6,7 @@ import info.revenberg.uploader.objects.DataObject;
 
 import org.springframework.batch.item.ItemProcessor;
 
-public class Processor implements ItemProcessor<DataObject , DataObject > {
+public class Processor implements ItemProcessor<DataObject, DataObject> {
 
 	@Override
 	public DataObject process(final DataObject data) throws Exception {
@@ -14,14 +14,14 @@ public class Processor implements ItemProcessor<DataObject , DataObject > {
 			return data;
 		}
 		if (data.getFilename() == null) {
-			return data;		
+			return data;
 		}
 		if (data.getFilename().toLowerCase().contains(".pptx")) {
 
 			String[] s = data.getFilename().replace(Reader.location, "").split("/");
 			String bundleName = "";
-			for (int i=0;i<s.length - 1;i++)
-				if (bundleName == "")  {
+			for (int i = 0; i < s.length - 1; i++)
+				if (bundleName == "") {
 					bundleName = s[i];
 				} else {
 					bundleName += " - " + s[i];
@@ -30,9 +30,11 @@ public class Processor implements ItemProcessor<DataObject , DataObject > {
 
 			data.setBundleName(URLEncoder.encode(bundleName.trim(), "UTF-8"));
 			data.setSongName(URLEncoder.encode(songName, "UTF-8"));
+			if (bundleName == null || songName == null) {
+				return null;
+			}
 			return data;
 		}
-		data.setFilename("");
-		return data;
+		return null;
 	}
 }

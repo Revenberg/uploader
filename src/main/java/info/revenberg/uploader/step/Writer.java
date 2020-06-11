@@ -96,7 +96,7 @@ public class Writer implements ItemWriter<DataObject> {
                     counter++;
                     System.out.println(Integer.toString(counter) + " " + Integer.toString(count) + " Writing the data "
                             + " - " + msg.getBundleName() + " - " + msg.getSongName());
-                    retry = 15;
+                    retry = 3;
                     while (retry > 0) {
                         try {
                             rc = uploadFile("http://40.122.30.210:8090/rest/v1/ppt/" + msg.getBundleName() + "/"
@@ -105,11 +105,10 @@ public class Writer implements ItemWriter<DataObject> {
                         } catch (Exception e) {
                             retry--;
                             System.out.println(e);
-                            TimeUnit.SECONDS.sleep(30);
+                            System.out.println(Integer.toString(counter) + " " + Integer.toString(count)
+                                    + " Writing the data " + " - " + msg.getBundleName() + " - " + msg.getSongName());
+                            TimeUnit.SECONDS.sleep(10);
                         }
-                    }
-                    if (count == 1) {
-                        TimeUnit.SECONDS.sleep(5);
                     }
                 }
                 count++;
